@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Typography, Space, Row, Layout, Col } from 'antd'
+import "../../../App.css"
 
 import Menu from './Menu/Menu'
 // import logo from '../././'
@@ -23,7 +24,11 @@ export default function DefaultSlider({color}) {
             style={{backgroundColor: color}}
             >
                 <Link to='/'>
-                    <Row>
+                    <Row
+                        style={{
+                            marginTop: 20
+                        }}
+                    >
                         <Col>
                             <img 
                                 src={"https://media.istockphoto.com/id/470212129/ko/%EB%B2%A1%ED%84%B0/%ED%94%BC%ED%83%80%EA%B3%A0%EB%9D%BC%EC%8A%A4-of-%EC%82%AC%EB%AA%A8%EC%8A%A4-570-bc-after-510-bc.jpg?s=612x612&w=0&k=20&c=n4nzASR_6UAWlIXiN-SJ-YZPoa2l05RmwrkanbOY4ms="}

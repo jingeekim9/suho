@@ -13,9 +13,18 @@ const color = "#ffffff";
 
 export default function PageLayout ({ children }) {
     return (
-        <Layout>
+        <Layout
+            style={{
+                height: '100vh'
+            }}
+        >
             <Sider color={color}/>
-            <Layout>
+            <Layout
+                style={{
+                    height: '100vh',
+                    backgroundColor: 'white'
+                }}
+            >
                 <Affix> 
                     <Header color={color}/> 
                 </Affix>

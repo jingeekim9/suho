@@ -116,7 +116,7 @@ export default function RecommendedList({onItemClicked, setModalContent, listCon
               
               footer={
               <div>
-                  <b>ant design</b> footer part
+                  {/* <b>ant design</b> footer part */}
               </div>
               }
               renderItem={onRenderListItem}

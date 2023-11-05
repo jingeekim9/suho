@@ -23,7 +23,7 @@ export default function DefaultHeader ({ color }) {
         <Header style={{backgroundColor: color}}>
             <Row gutter={{xs: 8, sm: 16}}>
                 <Col xs={12} sm={12} md={12}>
-                    <BreadCrumb />
+                    {/* <BreadCrumb /> */}
                 </Col>
                 <Col xs={12} sm={12} md={12} style={{textAlign:"right"}}>
                 { localStorage.getItem('authToken') && <>

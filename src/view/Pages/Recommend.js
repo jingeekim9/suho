@@ -75,33 +75,62 @@ export default function Recommend () {
 
     return (
       <>
-      <Card title={<Text>Configuration</Text>}>
-        <Row span={24}>
-          <Col span={12}>
-            <Row span={24}>
-              <Col span={10} style={style}>
-                <OptionCard useSwitch={false} items={problemNum} title={'Problem Number'} update={setProblemNumber} isSingleSelect={true}/>
-              </Col>
-              <Col span={10} style={style}>
-                <OptionCard useSwitch={false} items={wrongNum} title={'Wrongs'} update={setWrongCount} isSingleSelect={true}/>
-              </Col>
-            </Row>  
-          </Col>
-          <Col span={12}>
-            <Alert message="Instruction" type="info" showIcon />   
-            <br />       
-            <Text>- Select a number from 'Problem number' to submit how many number you would like to solve.</Text><br />
-            <Text>- Select a number from ''Wrong' to submit the level of times you got it wrong.</Text><br />
-            <Text>  : if you select 5, questions you got wrong over 5 times will be displayed</Text><br />
-            <Text>- If you are ready, click the "Submit" button.</Text>
+      <Row span={24}>
+          <Col span={24}>
+            <div
+              style={{
+                justifyContent: 'center',
+                display: 'flex'
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: '#d0e2f3',
+                  padding: '5px 50px',
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  borderRadius: 5,
+                  marginBottom: 50
+                }}
+              >
+                Instruction
+              </div>
+            </div>
+            <div
+              style={{
+                justifyContent: 'center',
+                display: 'flex',
+                fontSize: 20,
+                marginBottom: 80
+              }}
+            >
+              Questions with wrong count higher than the input will be shown.
+            </div>
           </Col>
         </Row>
-        <Row>
-          <Col span={24} style={{textAlign: 'right'}}>
-            <Button onClick={onSubmitClicked}>Submit</Button>
+        <Row span={24} justify={'space-around'} align={'center'}>
+          <Col span={6} style={style}>
+            <OptionCard useSwitch={false} items={problemNum} title={'Problem Number'} update={setProblemNumber} isSingleSelect={true}/>
+          </Col>
+          <Col span={6} style={style}>
+            <OptionCard useSwitch={false} items={wrongNum} title={'Wrongs'} update={setWrongCount} isSingleSelect={true}/>
+          </Col>
+          <Col 
+            span={6} 
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Button 
+              onClick={onSubmitClicked}
+              size="large"
+            >
+              Submit
+            </Button>
           </Col>
         </Row>
-      </Card>
       <Row span={24}>
         <Col span={24}>
           { isLoading ? <Spin/> : <>

@@ -135,18 +135,21 @@ export default function BookmarkedList ({onItemClicked, setModalContent}) {
 
   return (
     data && ( <>
-      { isLoading ? <Spin /> :
+      { isLoading ? 
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <Spin />
+      </div>
+         :
         <List itemLayout="vertical" size="large" dataSource={data.data}
                 pagination={{
                 onChange: (page) => { console.log(page); },
                 pageSize: 3,
                 }}
-                
-                footer={
-                <div>
-                    <b>ant design</b> footer part
-                </div>
-                }
                 renderItem={onRenderListItem}
         /> }
       </>

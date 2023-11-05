@@ -128,7 +128,7 @@ export default function HistoryList({onItemClicked, setModalContent}) {
                 
                 footer={
                 <div>
-                    <b>ant design</b> footer part
+                    {/* <b>ant design</b> footer part */}
                 </div>
                 }
                 renderItem={onRenderListItem}
