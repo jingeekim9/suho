@@ -15,9 +15,14 @@ export default function Bookmark () {
     const closeBookmarkModal = () => {setIsBookmarkModalOpen(false)};
 
     return (
-        <>
+        <div
+        style={{
+            overflow: 'scroll',
+            height: 'calc(100vh - 64px)'
+        }}
+    >
         <HistoryList onItemClicked={()=>setIsBookmarkModalOpen(true)} setModalContent={setModalContent}/>
         <BookmarkModal open={isBookmarkModalOpen} onClosed={closeBookmarkModal} modalContent = {modalContent}/>
-        </>
+        </div>
     )
 }

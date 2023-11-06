@@ -7,7 +7,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.7;
-  background: #eee;
   color: #333;
 }
 
@@ -70,4 +69,8 @@ body {
   color: #fff;
   text-align: center;
   margin: 0.5rem 0;
+}
+
+:where(.css-dev-only-do-not-override-xu9wm8).ant-menu-light.ant-menu-root.ant-menu-inline, :where(.css-dev-only-do-not-override-xu9wm8).ant-menu-light>.ant-menu.ant-menu-root.ant-menu-inline, :where(.css-dev-only-do-not-override-xu9wm8).ant-menu-light.ant-menu-root.ant-menu-vertical, :where(.css-dev-only-do-not-override-xu9wm8).ant-menu-light>.ant-menu.ant-menu-root.ant-menu-vertical {
+  border-inline-end: 0px !important;
 }

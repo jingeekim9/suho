@@ -19,9 +19,14 @@ export default function Bookmark () {
     , []);
 
     return ( 
-    <>
+    <div
+        style={{
+            overflow: 'scroll',
+            height: 'calc(100vh - 64px)'
+        }}
+    >
         <BookmarkedList onItemClicked={()=>setIsBookmarkModalOpen(true)} setModalContent={setModalContent}/>
         <BookmarkModal open={isBookmarkModalOpen} onClosed={closeBookmarkModal} modalContent = {modalContent}/>
-    </>
+    </div>
     )
 }
