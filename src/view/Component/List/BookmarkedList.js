@@ -31,14 +31,14 @@ export default function BookmarkedList ({onItemClicked, setModalContent}) {
       data: data ? data : undefined, 
       isLoading: isLoading
     }
-  }, shallowEqual)
+  }, [])
 
   const { answerData } = useSelector((state) => {
     console.log("answerData in declaration", state);
     let data = state.data.refAnswer;
 
     return data;
-  }, shallowEqual)
+  }, [])
 
 
   const IconText = ({ icon, text }) => (
@@ -113,10 +113,14 @@ export default function BookmarkedList ({onItemClicked, setModalContent}) {
 
           </>
         );
-        onItemClicked();
+        // onItemClicked();
       }}
       actions={[<IconText icon={StarOutlined} text="Bookmarked" key="list-vertical-star-o" />,]}
-      extra={<Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />}
+      extra={
+      <div>
+        <Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />
+      </div>
+      }
     >
       <List.Item.Meta
           title={<a href={item.href}>{item.title}</a>}
@@ -129,6 +133,9 @@ export default function BookmarkedList ({onItemClicked, setModalContent}) {
               <Text>timezone: {item.timezone}</Text>
             </div>
           }
+          onClick={() => {
+            onItemClicked();
+          }}
       />          
     </List.Item>
   )

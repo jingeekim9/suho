@@ -94,7 +94,7 @@ export default function HistoryList({onItemClicked, setModalContent}) {
 
           </>
         );
-        onItemClicked()
+        // onItemClicked()
       }}
       actions={[<IconText icon={CheckCircleOutlined} text="Bookmarked" key="list-vertical-star-o" />,]}
       extra={
@@ -109,19 +109,25 @@ export default function HistoryList({onItemClicked, setModalContent}) {
         </div>
       }
     >
-      <List.Item.Meta
-          title={<a href={item.href}>{item.title}</a>}
-          description={
-            <div>
-              <Text>Question Type: {item.question.questionType}</Text><br/>
-              <Text>Chapters: {item.chapter}</Text><br/>
-              <Text>Difficulty: {item.difficulty}</Text><br/>
-              <Text>Paper: {item.paper}</Text><br/>
-              <Text>timezone: {item.timezone}</Text><br/>
-              <Text>wrong: {item.wrong}</Text>
-            </div>
-          }
-      />          
+      <div
+      onClick={() => {
+        onItemClicked()
+      }}
+      >
+        <List.Item.Meta
+            title={<a href={item.href}>{item.title}</a>}
+            description={
+              <div>
+                <Text>Question Type: {item.question.questionType}</Text><br/>
+                <Text>Chapters: {item.chapter}</Text><br/>
+                <Text>Difficulty: {item.difficulty}</Text><br/>
+                <Text>Paper: {item.paper}</Text><br/>
+                <Text>timezone: {item.timezone}</Text><br/>
+                <Text>wrong: {item.wrong}</Text>
+              </div>
+            }
+        />       
+      </div>   
     </List.Item>
   )
 
