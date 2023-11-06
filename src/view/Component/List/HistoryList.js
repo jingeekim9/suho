@@ -1,4 +1,4 @@
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import { LikeOutlined, MessageOutlined, StarOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import React, { useState, useEffect } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import { Spin, Button, Input, List, Space, Typography, Image } from 'antd';
@@ -96,9 +96,17 @@ export default function HistoryList({onItemClicked, setModalContent}) {
         );
         onItemClicked()
       }}
-      actions={[<IconText icon={StarOutlined} text="for something" key="list-vertical-star-o" />,]}
+      actions={[<IconText icon={CheckCircleOutlined} text="Bookmarked" key="list-vertical-star-o" />,]}
       extra={
-        <Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '100%'
+          }}
+        >
+          <Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />
+        </div>
       }
     >
       <List.Item.Meta
@@ -119,7 +127,16 @@ export default function HistoryList({onItemClicked, setModalContent}) {
 
   return (
     data && <>
-    { isLoading ? <Spin/> : <>
+    { isLoading ? 
+     <div
+     style={{
+       display: 'flex',
+       justifyContent: 'center'
+     }}
+   >
+     <Spin />
+   </div>
+     : <>
         <List itemLayout="vertical" size="large" dataSource={data.data}
                 pagination={{
                 onChange: (page) => { console.log(page); },
