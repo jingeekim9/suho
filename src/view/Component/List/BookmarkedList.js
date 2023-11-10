@@ -83,13 +83,13 @@ export default function BookmarkedList ({onItemClicked, setModalContent}) {
     <List.Item
       key={item.title}
       onClick={() => {
-        callAnswer(item);
+        // callAnswer(item);
         setModalContent(
           <>
             <p>Question {item.questionId}</p>
             <>   
               {item.question.questionImage.image && <Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />}
-              {item.question.subQuestion[0].subQuestionImage.image && <Image src={`data:image/png;base64, ${item.question.subQuestion[0].subQuestionImage.image}`} />}
+              {/* {item.question.subQuestion[0].subQuestionImage.image && <Image src={`data:image/png;base64, ${item.question.subQuestion[0].subQuestionImage.image}`} />} */}
             </>
             <Divider/>
             {answerData && answerData[0].answer.answerSubscripts.map((i, idx) => (

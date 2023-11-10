@@ -79,7 +79,7 @@ export default function HistoryList({onItemClicked, setModalContent}) {
           <>
             <p>Question {item.questionId}</p>
             <Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />
-            <Image src={`data:image/png;base64, ${item.question.subQuestion[0].subQuestionImage.image}`} />
+            {/* <Image src={`data:image/png;base64, ${item.question.subQuestion[0].subQuestionImage.image}`} /> */}
             {console.log("Answer Data: ", answerData)}
 
             { answerData && answerData[0].answerSubscripts.map((answerSubscript) => (

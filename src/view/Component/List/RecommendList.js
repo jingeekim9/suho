@@ -64,7 +64,7 @@ export default function RecommendedList({onItemClicked, setModalContent, listCon
           <>
             <p>Question {item.questionId}</p>
             <Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />
-            <Image src={`data:image/png;base64, ${item.question.subQuestion[0].subQuestionImage.image}`} />
+            {/* <Image src={`data:image/png;base64, ${item.question.subQuestion[0].subQuestionImage.image}`} /> */}
             {console.log("Answer Data: ", answerData)}
 
             { answerData && answerData[0].answerSubscripts.map((answerSubscript) => (
@@ -79,21 +79,23 @@ export default function RecommendedList({onItemClicked, setModalContent, listCon
 
           </>
         );
-        onItemClicked()
+        // onItemClicked()
       }}
-      actions={[<IconText icon={StarOutlined} text="for something" key="list-vertical-star-o" />,]}
+      actions={[<IconText icon={StarOutlined} text="Recommendations" key="list-vertical-star-o" />,]}
       extra={
-        <img
-            width={272}
-            alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-        />
+        <div>
+        <Image src={`data:image/png;base64, ${item.question.questionImage.image}`} />
+      </div>
       }
     >
       <List.Item.Meta
           title={<a href={item.href}>{item.title}</a>}
           description={
-            <div>
+            <div
+              onClick={() => {
+                onItemClicked()
+              }}
+            >
               <Text>Question Type: {item.question.questionType}</Text><br/>
               <Text>Chapters: {item.chapter}</Text><br/>
               <Text>Difficulty: {item.difficulty}</Text><br/>

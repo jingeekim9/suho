@@ -108,7 +108,12 @@ export default function Recommend () {
             </div>
           </Col>
         </Row>
-        <Row span={24} justify={'space-around'} align={'center'}>
+        <Row span={24} justify={'space-around'} align={'center'}
+          style={{
+            borderBottom: '1px solid #f0f0f0',
+            paddingBottom: 50
+          }}
+        >
           <Col span={6} style={style}>
             <OptionCard useSwitch={false} items={problemNum} title={'Problem Number'} update={setProblemNumber} isSingleSelect={true}/>
           </Col>
@@ -133,7 +138,17 @@ export default function Recommend () {
         </Row>
       <Row span={24}>
         <Col span={24}>
-          { isLoading ? <Spin/> : <>
+          { isLoading ? 
+          <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: 100
+          }}
+        >
+            <Spin/>
+          </div>
+           : <>
             <RecommendList onItemClicked={()=>setIsRecommendationModalOpen(true)} setModalContent={setModalContent} listContent = {listContent}/>
             <BookmarkModal open={isBookmarkModalOpen} onClosed={closeBookmarkModal} modalContent = {modalContent}/>
           </>}
