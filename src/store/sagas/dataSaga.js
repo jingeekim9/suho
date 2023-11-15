@@ -1,7 +1,7 @@
 import { takeLatest, put, call } from "redux-saga/effects"
 import { Types, Actions as dataActions } from "../actions/dataActions"
 
-import { getData, getQuestions, getRefAnswer, getReloadDBAnswer, getReloadDBQuestion, getSaveQuestion, getAnswers } from "./fetchHelper/dataHelper"
+import { getData, getQuestions, getRefAnswer, getReloadDBAnswer, getReloadDBQuestion, getSaveQuestion, getAnswers, saveBookmarks, getBookmarks } from "./fetchHelper/dataHelper"
 
 function* onGetData({payload: id}) {
     try {
@@ -71,6 +71,28 @@ function* onGetAnswers({payload: info}) {
     }
 }
 
+function* onSaveBookmarks({payload: info}) {
+    try {
+        console.log("data saga get answers called");
+        const response = yield call(saveBookmarks, info);
+        console.log("response: ", response);
+        yield put(dataActions.getBookmarksSuccess(response));
+    } catch (error) {
+        yield put(dataActions.getBookmarksFail(error.response));
+    }
+}
+
+function* onGetBookmarks({payload: info}) {
+    try {
+        console.log("data saga get bookmarks called");
+        const response = yield call(getBookmarks, info);
+        console.log("response: ", response);
+        yield put(dataActions.saveBookmarksSuccess(response));
+    } catch (error) {
+        yield put(dataActions.saveBookmarksFail(error.response));
+    }
+}
+
 function* dataSaga() {
     yield takeLatest(Types.GET_DATA, onGetData)
     yield takeLatest(Types.GET_QUESTIONS, onGetQuestions)
@@ -78,6 +100,8 @@ function* dataSaga() {
     yield takeLatest(Types.GET_RELOAD_DB, onGetReloadDB)
     yield takeLatest(Types.GET_SAVE_QUESTION, onGetSaveQuestion);
     yield takeLatest(Types.GET_ANSWERS, onGetAnswers);
+    yield takeLatest(Types.SAVE_BOOKMARKS, onSaveBookmarks);
+    yield takeLatest(Types.GET_BOOKMARKS, onGetBookmarks);
 }
 
 export default dataSaga;

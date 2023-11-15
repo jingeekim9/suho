@@ -19,6 +19,7 @@ axiosApi.interceptors.response.use(
 
 // url: /users/register, /users/save
 export async function get(url, config){
+    console.log(config)
     return await axiosApi.get(url, {
         ...config,
     }).then((response) => response.data);

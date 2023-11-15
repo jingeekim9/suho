@@ -8,3 +8,5 @@ export const getReloadDBQuestion = () => get(Urls.GET_RELOAD_DB_QUESTION);
 export const getReloadDBAnswer = () => get(Urls.GET_RELOAD_DB_ANSWER);
 export const getSaveQuestion = (info) => get(Urls.GET_SAVE_QUESTION, {params: {infos: info}});
 export const getAnswers = (info) => get(Urls.GET_ANSWERS, {params: {infos: info}});
+export const getBookmarks = (info) => get(Urls.GET_BOOKMARKS, {params: {username: info.username}});
+export const saveBookmarks = (questionId, username) => get(Urls.SAVE_BOOKMARKS, {params: {questionId: questionId, username: username}});

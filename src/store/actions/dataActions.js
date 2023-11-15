@@ -23,6 +23,17 @@ export const Types = {
     GET_ANSWERS: "GET_ANSWERS",
     GET_ANSWERS_SUCCESS: "GET_ANSWERS_SUCCESS",
     GET_ANSWERS_FAIL: "GET_ANSWERS_FAIL",
+
+    // Save BOOKMARKS
+    SAVE_BOOKMARKS: "SAVE_BOOKAMRK",
+    SAVE_BOOKMARKS_FAIL: "SAVE_BOOKMARKS_FAIL",
+    SAVE_BOOKMARKS_SUCCESS: "SAVE_BOOKMARKS_SUCCESS",
+
+    // Get BOOKMARKS
+    GET_BOOKMARKS: "GET_BOOKMARKS",
+    GET_BOOKMARKS_FAIL: "GET_BOOKMARKS_FAIL",
+    GET_BOOKMARKS_SUCCESS: "GET_BOOKMARKS_SUCCESS",
+
 };
 
 // infos = { questionType: String, difficulty: Array, chapter, paper: Array, timezone: Array, }
@@ -105,5 +116,29 @@ export const Actions = {
     getAnswersFail: (error) => {
         console.log("get answers failed: ", error)
         return {type: Types.GET_ANSWERS_FAIL, payload: error}
+    },
+    saveBookmarks: (data) => {
+        console.log("get answers success", data);
+        return {type: Types.SAVE_BOOKMARKS, payload: data}
+    },
+    saveBookmarksSuccess: (data) => {
+        console.log("get answers success", data);
+        return {type: Types.SAVE_BOOKMARKS_SUCCESS, payload: data}
+    },
+    saveBookmarksFail: (error) => {
+        console.log("get answers failed: ", error)
+        return {type: Types.SAVE_BOOKMARKS_FAIL, payload: error}
+    },
+    getBookmarks: (data) => {
+        console.log("get answers success", data);
+        return {type: Types.GET_BOOKMARKS, payload: data}
+    },
+    getBookmarksSuccess: (data) => {
+        console.log("get answers success", data);
+        return {type: Types.GET_BOOKMARKS_SUCCESS, payload: data}
+    },
+    getBookmarksFail: (error) => {
+        console.log("get answers failed: ", error)
+        return {type: Types.GET_BOOKMARKS_FAIL, payload: error}
     },
 };

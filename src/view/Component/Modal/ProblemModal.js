@@ -3,8 +3,9 @@ import { Modal, Button, Spin, Checkbox, message, Input,
           Row, Col, Tabs, Divider, Image, Space, Typography } from 'antd'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import UndefinedImage from './undefinedImage'
-
+import { get } from "../../../store/sagas/fetchHelper/http/api";
 import {Actions as dataAction} from '../../../store/actions/dataActions'
+const { Urls } = require("../../../store/sagas/fetchHelper/http/url");
 
 const {Text} = Typography
 export default function ProblemModal({open, onClosed, onCleared}) { 
@@ -18,7 +19,7 @@ export default function ProblemModal({open, onClosed, onCleared}) {
   const [wrongCountList, setWrongCountList] = useState(new Array(MAX_QUESTIONS).fill(0));
   
   const [bookmarkCheckbox, setBookmarkCheckbox] = useState(
-    <Checkbox checked={false} onChange={() => toggleBookmark()}>Bookmark</Checkbox>
+    <Checkbox checked={false} onChange={() => toggleBookmark(steps[current])}>Bookmark</Checkbox>
   );
 
   // Data fetched from the backend
@@ -34,17 +35,17 @@ export default function ProblemModal({open, onClosed, onCleared}) {
         content: <>
           {generalQuestionImage && <Image src={`data:image/png;base64, ${generalQuestionImage}`} />}
           {subQuestionImage && <Image src={`data:image/png;base64, ${subQuestionImage}`} />}
-        </>
+        </>,
+        id: data[i].questionId
       }
     }
 
     returnData = (returnData.length == 0) ? [{
-        title: 'quesiton does not exist',
+        title: 'question does not exist',
         content: <UndefinedImage/> 
       },] : returnData
     
     let isLoading = state.data.loadingData;
-
     return { steps: returnData, data: data, isLoading: isLoading}
   }, shallowEqual)
 
@@ -118,7 +119,7 @@ export default function ProblemModal({open, onClosed, onCleared}) {
   useEffect(() => { setCurrentAnswer(answerData) }, [answerData])
   useEffect(() => { 
     setBookmarkCheckbox(
-      <Checkbox checked={bookmarkState[current]} onChange={() => {toggleBookmark()}}>Bookmark</Checkbox>
+      <Checkbox checked={bookmarkState[current]} onChange={() => {toggleBookmark(steps[current])}}>Bookmark</Checkbox>
     );
   }, [bookmarkState, current]);
 
@@ -205,16 +206,19 @@ export default function ProblemModal({open, onClosed, onCleared}) {
 
   }
 
-  const toggleBookmark = () => {
+  const toggleBookmark = async(info) => {
+    console.log(info)
     setBookmarkState(bookmarkState.map((q,idx) =>
       idx === current ? !bookmarkState[current] : bookmarkState[idx]
     ));
+    var email = localStorage.getItem('userEmail')
+    var response = await get(Urls.SAVE_BOOKMARKS, {params: {username: email, questionId: info.id}})
   }
 
   const footer = 
   <div style={{ marginTop: 24, display: 'flex'}}>
     <div style={{textAlign: 'left'}}> 
-      {steps[current].title !== "quesiton does not exist" && bookmarkCheckbox}
+      {steps[current].title !== "question does not exist" && bookmarkCheckbox}
     </div>
     <div style={{width: '100%', textAlign:'right'}}>
       {current > 0 && <Button style={{margin: '0 8px',}} onClick={() => prev()}> Previous </Button>}
@@ -237,14 +241,14 @@ export default function ProblemModal({open, onClosed, onCleared}) {
             </Row>
             <Divider/>
             <Row span={24}>
-              <Col span={24}> {steps[current].content} </Col>
+              <Col span={24}> {steps[current].content}</Col>
             </Row>
           </Col>
         </Row>
         <Divider/>
         {isLoading ? <Spin /> : <>
           {answerData[0] && answerData[0].answer.answerSubscripts.map((i, idx) => (
-          steps[current].title !== "quesiton does not exist" && answerData[0].answer.answerValues[0] != "None" && <Row>
+          steps[current].title !== "question does not exist" && answerData[0].answer.answerValues[0] != "None" && <Row>
               <Col span={4}>
                 <Text>{(i == "None") ? "Answer: " : i}</Text>
               </Col>
@@ -257,7 +261,7 @@ export default function ProblemModal({open, onClosed, onCleared}) {
             <Row style={{marginTop: 10}}>
               <Col span={24} style={{textAlign: 'right'}}>
                   {console.log(steps[current].title)}
-                  {steps[current].title !== "quesiton does not exist" && <Button type="primary" onClick={answerSubmit}>Submit</Button>}
+                  {steps[current].title !== "question does not exist" && <Button type="primary" onClick={answerSubmit}>Submit</Button>}
                 </Col>
             </Row>
             <Divider/>

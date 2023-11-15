@@ -85,6 +85,10 @@ const DataReducer = (state = initialState, action) => {
             console.log('reducer get answers success', action.payload);
             state = {...state, loadingData: false, answers: action.payload};
             break;
+        case Types.GET_BOOKMARKS_SUCCESS:
+            console.log('reducer get bookmarks success', action.payload);
+            state = {...state, answers: action.payload};
+            break;
 
         default:
             state = {...state};

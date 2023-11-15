@@ -6,4 +6,7 @@ module.exports.Urls = {
     GET_RELOAD_DB_ANSWER:  "/api/Data/UploadAnswer",
     GET_SAVE_QUESTION: "/api/Data/saveQuestion",
     GET_ANSWERS: "/api/Data/getAnswers",
+    GET_BOOKMARKS: "/api/Data/getBookmarks",
+    SAVE_BOOKMARKS: "/api/Data/saveBookmark",
+    DELETE_BOOKMARK: "/api/Data/deleteBookmark"
 };
